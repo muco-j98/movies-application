@@ -16,10 +16,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/movieIcon"
+        android:id="@+id/userIcon"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/movie_icon"
+        android:src="@drawable/user_icon"
         app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline"
         app:layout_constraintEnd_toEndOf="@id/vertical_guideline"
         app:layout_constraintStart_toStartOf="@id/vertical_guideline"
@@ -29,13 +29,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Sign In"
+        android:text="Create Account"
         android:textColor="@color/main_purple"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/vertical_guideline"
         app:layout_constraintStart_toStartOf="@id/vertical_guideline"
-        app:layout_constraintTop_toBottomOf="@id/movieIcon" />
+        app:layout_constraintTop_toBottomOf="@id/userIcon" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/formLayout"
@@ -55,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:hint="email"
+            android:paddingBottom="10dp"
             android:textColorHint="@color/main_purple"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
@@ -65,7 +66,30 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/usernameField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="username"
+            android:paddingBottom="10dp"
+            android:textColorHint="@color/main_purple"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/emailField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,7 +106,7 @@
             app:boxCornerRadiusTopStart="20dp"
             app:endIconMode="password_toggle"
             app:endIconTint="@color/main_purple"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/usernameField">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -94,13 +118,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/loginButton"
+        android:id="@+id/registerButton"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:backgroundTint="@color/main_purple"
-        android:text="Login"
+        android:text="Register"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="@id/vertical_guideline"
         app:layout_constraintStart_toStartOf="@id/vertical_guideline"
@@ -112,27 +136,27 @@
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="@id/vertical_guideline"
         app:layout_constraintStart_toStartOf="@id/vertical_guideline"
-        app:layout_constraintTop_toBottomOf="@id/loginButton">
+        app:layout_constraintTop_toBottomOf="@id/registerButton">
 
         <TextView
-            android:id="@+id/newHereText"
+            android:id="@+id/haveAccountText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="New Here?"
+            android:text="Already have an account?"
             android:textColor="@color/main_purple"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/redirectSignUpText"
+            android:id="@+id/redirectSignInText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:paddingStart="3dp"
-            android:text="sign up"
+            android:text="sign in"
             android:textColor="@color/main_purple"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/newHereText"
+            app:layout_constraintStart_toEndOf="@+id/haveAccountText"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -141,7 +165,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.60" />
+        app:layout_constraintGuide_percent="0.55" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horizontal_guideline"
@@ -158,3 +182,4 @@
         app:layout_constraintGuide_percent="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
