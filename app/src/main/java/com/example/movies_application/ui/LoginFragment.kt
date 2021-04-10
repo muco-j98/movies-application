@@ -26,19 +26,35 @@ class LoginFragment: Fragment() {
     private var _binding: LoginFragmentBinding? = null
     private val binding get() = _binding!!
 
+    private val authStateListener =  FirebaseAuth.AuthStateListener { firebaseAuth ->
+        val firebaseUser = firebaseAuth.currentUser
+        if (firebaseUser != null) {
+            binding.progressCircular.visibility = View.INVISIBLE
+            view?.findNavController()
+                ?.navigate(LoginFragmentDirections.actionLoginFragmentToMoviesFragment())
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = LoginFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
+        binding.root.visibility = View.INVISIBLE
+        binding.progressCircular.visibility = View.VISIBLE
         return view
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
+    }
+
+    override fun onStart() {
+        super.onStart()
+        auth.addAuthStateListener(this.authStateListener)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,6 +69,11 @@ class LoginFragment: Fragment() {
         binding.redirectSignUpText.setOnClickListener {
             navigateToRegistrationScreen()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        auth.removeAuthStateListener(this.authStateListener)
     }
 
     private fun loginUser(data: Pair<String, String>) {

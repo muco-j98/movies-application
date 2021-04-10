@@ -17,6 +17,8 @@ import com.example.movies_application.databinding.MoviesFragmentBinding
 import com.example.movies_application.network.models.MoviesItem
 import com.example.movies_application.network.util.Resource
 import com.example.movies_application.viewmodels.MainViewModel
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -72,6 +74,13 @@ class MoviesFragment: Fragment() {
                 }
             }
         })
+
+        binding.moviesButton.setOnClickListener {
+            if (Firebase.auth.currentUser != null) {
+                Toast.makeText(requireContext(), "Succ", Toast.LENGTH_SHORT).show()
+            } else
+                Toast.makeText(requireContext(), "and i ooppp", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setupRecyclerView() {
