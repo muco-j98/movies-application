@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">movies-application</string>
     <string name="movies">Movies</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at
+        ante non nibh varius malesuada eu at velit. Morbi fermentum pharetra hendrerit.
+        In cursus a lorem ac laoreet. Proin eros orci, congue ac nulla ut, suscipit lobortis
+        augue. Donec vel mattis lorem. Curabitur condimentum, arcu suscipit mollis consectetur,
+        ipsum dui facilisis ipsum, et feugiat sapien enim quis turpis. Sed cursus et augue sit
+        amet vulputate. Mauris elementum vitae magna vel blandit. Nam sit amet libero suscipit,
+        consequat diam id, pellentesque ligula. Duis vitae massa egestas, tincidunt metus egestas,
+        scelerisque ante. Nulla vehicula ante ut ultricies rutrum.</string>
 </resources>

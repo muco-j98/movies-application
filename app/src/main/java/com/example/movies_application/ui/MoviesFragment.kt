@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movies_application.R
 import com.example.movies_application.adapters.MovieAdapter
@@ -19,7 +20,7 @@ import com.example.movies_application.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MoviesFragment: Fragment(R.layout.movies_fragment) {
+class MoviesFragment: Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
     private lateinit var moviesAdapter: MovieAdapter
@@ -50,7 +51,6 @@ class MoviesFragment: Fragment(R.layout.movies_fragment) {
                     moviesResponse.data.let { response ->
                         response?.let {
                             if (it.isEmpty()) {
-                                setupRecyclerView()
                                 Toast.makeText(
                                     requireContext(),
                                     "No movies found",
@@ -83,6 +83,7 @@ class MoviesFragment: Fragment(R.layout.movies_fragment) {
     }
 
     private fun manageOnClickEvent(movie: MoviesItem) {
-        Toast.makeText(requireContext(), movie.title, Toast.LENGTH_SHORT).show()
+        val action = MoviesFragmentDirections.actionMoviesFragmentToMovieDetails(movie)
+        view?.findNavController()?.navigate(action)
     }
 }

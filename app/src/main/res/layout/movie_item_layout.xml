@@ -5,6 +5,8 @@
     android:id="@+id/recipe_cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cornerRadius="14dp"
+    app:cardElevation="4dp"
     android:layout_margin="4dp"
     app:cardCornerRadius="10dp">
 
@@ -16,23 +18,23 @@
 
         <ImageView
             android:id="@+id/imV_movieIcon"
-            android:layout_width="130dp"
-            android:layout_height="70dp"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
             android:src="@drawable/ic_launcher_foreground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/movie_label"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="Title:"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/imV_movieIcon"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toTopOf="@id/guideline" />
 
         <TextView
             android:id="@+id/tv_rating"
@@ -41,10 +43,16 @@
             android:text="Rating"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="@id/movie_label"
-            app:layout_constraintTop_toBottomOf="@id/movie_label" />
+            app:layout_constraintTop_toBottomOf="@id/guideline" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

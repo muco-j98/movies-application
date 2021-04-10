@@ -6,5 +6,17 @@
     <fragment
         android:id="@+id/moviesFragment"
         android:name="com.example.movies_application.ui.MoviesFragment"
-        android:label="MoviesFragment" />
+        android:label="MoviesFragment" >
+        <action
+            android:id="@+id/action_moviesFragment_to_movieDetails"
+            app:destination="@id/movieDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetails"
+        android:name="com.example.movies_application.ui.MovieDetails"
+        android:label="MovieDetails" >
+        <argument
+            android:name="MovieObj"
+            app:argType="com.example.movies_application.network.models.MoviesItem" />
+    </fragment>
 </navigation>
