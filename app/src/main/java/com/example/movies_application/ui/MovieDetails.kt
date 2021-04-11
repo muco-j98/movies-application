@@ -8,12 +8,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.movies_application.databinding.MovieDetailsBinding
 import com.example.movies_application.network.models.MoviesItem
 import com.example.movies_application.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.movie_details.*
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.job
 import kotlinx.coroutines.launch
@@ -43,15 +45,16 @@ class MovieDetails : Fragment() {
         setMovieUi(currentMovie)
 
         binding.starMovieBtn.setOnClickListener {
-            viewModel.checkIfMovieExists(currentMovie.id).observe(viewLifecycleOwner, Observer {
-                if (it == false) {
+            lifecycleScope.launch {
+                if(viewModel.checkIfMovieExists(currentMovie.id)) {
                     currentMovie.watchListed = "true"
                     viewModel.insertMovie(currentMovie)
                     Toast.makeText(requireContext(), currentMovie.title+ " added to Watchlist", Toast.LENGTH_SHORT).show()
                 } else {
+                    currentMovie.watchListed = "false"
                     viewModel.deleteMovie(currentMovie)
                 }
-            })
+            }
         }
     }
 

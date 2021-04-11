@@ -17,5 +17,5 @@ interface MovieDAO {
     fun getAllWatchlistMovies(): LiveData<List<MoviesItem>>
 
     @Query("SELECT EXISTS(SELECT * FROM movies_table WHERE id LIKE :movieId)")
-    fun checkIfMovieExists(movieId: String): LiveData<Boolean>
+    suspend fun checkIfMovieExists(movieId: String): Boolean
 }

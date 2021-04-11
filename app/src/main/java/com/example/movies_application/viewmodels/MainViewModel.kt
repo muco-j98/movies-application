@@ -22,7 +22,7 @@ class MainViewModel @Inject constructor(
         mainRepository.deleteMovie(movie)
     }
 
-    fun checkIfMovieExists(movieId: String): LiveData<Boolean> =
+    suspend fun checkIfMovieExists(movieId: String): Boolean =
         mainRepository.checkIfMovieExists(movieId)
 
     fun getMovies() = viewModelScope.launch {

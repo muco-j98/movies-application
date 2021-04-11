@@ -18,7 +18,7 @@ class MainRepository @Inject constructor(
 
     suspend fun deleteMovie(movie: MoviesItem) = movieDao.deleteMovie(movie)
 
-    fun checkIfMovieExists(movieId: String) = movieDao.checkIfMovieExists(movieId)
+    suspend fun checkIfMovieExists(movieId: String) = movieDao.checkIfMovieExists(movieId)
 
     fun getAllWatchlistMovies() = movieDao.getAllWatchlistMovies()
 
