@@ -40,6 +40,10 @@ class WatchlistAdapter(
         }
     }
 
+    public override fun getItem(position: Int): MoviesItem {
+        return super.getItem(position)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         return MovieViewHolder.from(parent)
     }
