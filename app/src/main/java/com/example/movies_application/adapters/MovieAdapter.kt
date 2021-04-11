@@ -27,7 +27,7 @@ class MovieAdapter(
 
             Glide.with(holder.itemView).load(movie.posterurl).into(movieImage)
 
-            val ratingText = "${movie.getAverageRating()}/10"
+            val ratingText = "${movie.calcAverageRatingValue()}/10"
             rating.text = ratingText
         }
 

@@ -17,6 +17,7 @@ import com.example.movies_application.databinding.MoviesFragmentBinding
 import com.example.movies_application.network.models.MoviesItem
 import com.example.movies_application.network.util.Resource
 import com.example.movies_application.viewmodels.MainViewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,9 +31,12 @@ class MoviesFragment: Fragment() {
     private var _binding: MoviesFragmentBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        auth = Firebase.auth
     }
 
     override fun onCreateView(
@@ -54,7 +58,7 @@ class MoviesFragment: Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.logout) {
-            Toast.makeText(requireContext(), "logged out", Toast.LENGTH_SHORT).show()
+            logoutUser()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -100,6 +104,11 @@ class MoviesFragment: Fragment() {
             } else
                 Toast.makeText(requireContext(), "and i ooppp", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun logoutUser() {
+        auth.signOut()
+        view?.findNavController()?.navigate(MoviesFragmentDirections.actionMoviesFragmentToLoginFragment())
     }
 
     private fun setupRecyclerView() {

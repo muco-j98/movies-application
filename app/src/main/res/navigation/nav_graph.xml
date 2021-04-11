@@ -11,6 +11,11 @@
         <action
             android:id="@+id/action_moviesFragment_to_movieDetails"
             app:destination="@id/movieDetails" />
+        <action
+            android:id="@+id/action_moviesFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/movieDetails"

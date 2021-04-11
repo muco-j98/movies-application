@@ -29,7 +29,6 @@ class LoginFragment: Fragment() {
     private val authStateListener =  FirebaseAuth.AuthStateListener { firebaseAuth ->
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser != null) {
-            binding.progressCircular.visibility = View.INVISIBLE
             view?.findNavController()
                 ?.navigate(LoginFragmentDirections.actionLoginFragmentToMoviesFragment())
         }
@@ -42,8 +41,6 @@ class LoginFragment: Fragment() {
     ): View {
         _binding = LoginFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
-        binding.root.visibility = View.INVISIBLE
-        binding.progressCircular.visibility = View.VISIBLE
         return view
     }
 
@@ -74,6 +71,7 @@ class LoginFragment: Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         auth.removeAuthStateListener(this.authStateListener)
+        view?.rootView?.visibility = View.VISIBLE
     }
 
     private fun loginUser(data: Pair<String, String>) {

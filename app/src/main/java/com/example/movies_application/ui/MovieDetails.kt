@@ -6,14 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.movies_application.databinding.MovieDetailsBinding
 import com.example.movies_application.network.models.MoviesItem
+import com.example.movies_application.viewmodels.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.movie_details.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.job
+import kotlinx.coroutines.launch
 
-class MovieDetails: Fragment() {
+@AndroidEntryPoint
+class MovieDetails : Fragment() {
 
     private var _binding: MovieDetailsBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +38,21 @@ class MovieDetails: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setMovieUi(MovieDetailsArgs.fromBundle(requireArguments()).movieObj)
+
+        val currentMovie = MovieDetailsArgs.fromBundle(requireArguments()).movieObj
+        setMovieUi(currentMovie)
+
+        binding.starMovieBtn.setOnClickListener {
+            viewModel.checkIfMovieExists(currentMovie.id).observe(viewLifecycleOwner, Observer {
+                if (it == false) {
+                    currentMovie.watchListed = "true"
+                    viewModel.insertMovie(currentMovie)
+                    Toast.makeText(requireContext(), currentMovie.title+ " added to Watchlist", Toast.LENGTH_SHORT).show()
+                } else {
+                    viewModel.deleteMovie(currentMovie)
+                }
+            })
+        }
     }
 
     private fun setMovieUi(movie: MoviesItem) {
@@ -36,4 +61,7 @@ class MovieDetails: Fragment() {
         binding.releaseDate.text = movie.releaseDate
         binding.storyLine.text = movie.storyline
     }
+
 }
+
+
