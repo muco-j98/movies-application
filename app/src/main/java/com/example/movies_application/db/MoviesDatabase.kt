@@ -8,7 +8,7 @@ import com.example.movies_application.util.Converters
 
 @Database(
     entities = [MoviesItem::class],
-    version = 9,
+    version = 10,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

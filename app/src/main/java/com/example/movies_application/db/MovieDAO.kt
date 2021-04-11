@@ -13,7 +13,7 @@ interface MovieDAO {
     @Delete
     suspend fun deleteMovie(movie: MoviesItem)
 
-    @Query("SELECT * FROM movies_table WHERE IS_WATCH_LISTED LIKE \"true\" ORDER BY watchlistTimeStamp DESC")
+    @Query("SELECT * FROM movies_table ORDER BY watchlistTimeStamp DESC")
     fun getAllWatchlistMovies(): LiveData<List<MoviesItem>>
 
     @Query("SELECT EXISTS(SELECT * FROM movies_table WHERE id LIKE :movieId)")

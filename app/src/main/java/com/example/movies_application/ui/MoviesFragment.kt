@@ -97,13 +97,6 @@ class MoviesFragment: Fragment() {
                 }
             }
         })
-
-        binding.moviesButton.setOnClickListener {
-            if (Firebase.auth.currentUser != null) {
-                Toast.makeText(requireContext(), "Succ", Toast.LENGTH_SHORT).show()
-            } else
-                Toast.makeText(requireContext(), "and i ooppp", Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun logoutUser() {

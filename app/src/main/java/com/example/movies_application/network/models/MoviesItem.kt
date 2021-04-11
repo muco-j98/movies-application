@@ -27,14 +27,12 @@ data class MoviesItem(
     var title: String,
     var year: String,
     var watchlistTimeStamp: Long,
-    @ColumnInfo(name = "IS_WATCH_LISTED")
-    var watchListed: String,
     @Ignore var avgRating: Double = 0.0
 ): Parcelable {
 
     constructor(): this(listOf(), 0, "", "", listOf(), "",
     "", "", "", "", listOf(), "", "",
-    "", "", 0L, "false")
+    "", "", 0L)
 
     fun calcAverageRatingValue(): String {
         avgRating = ratings.average()

@@ -51,4 +51,8 @@
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/watchListFragment"
+        android:name="com.example.movies_application.ui.WatchListFragment"
+        android:label="WatchListFragment" />
 </navigation>

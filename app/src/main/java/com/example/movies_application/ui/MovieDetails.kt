@@ -46,12 +46,10 @@ class MovieDetails : Fragment() {
 
         binding.starMovieBtn.setOnClickListener {
             lifecycleScope.launch {
-                if(viewModel.checkIfMovieExists(currentMovie.id)) {
-                    currentMovie.watchListed = "true"
+                if(!viewModel.checkIfMovieExists(currentMovie.id)) {
                     viewModel.insertMovie(currentMovie)
                     Toast.makeText(requireContext(), currentMovie.title+ " added to Watchlist", Toast.LENGTH_SHORT).show()
                 } else {
-                    currentMovie.watchListed = "false"
                     viewModel.deleteMovie(currentMovie)
                 }
             }
