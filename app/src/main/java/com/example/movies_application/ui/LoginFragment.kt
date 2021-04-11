@@ -98,7 +98,7 @@ class LoginFragment: Fragment() {
     }
 
     private fun navigateToRegistrationScreen() {
-        view?.findNavController()?.navigate(R.id.action_loginFragment_to_registerFragment)
+        view?.findNavController()?.navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
     }
 
     private fun validateEntries(): Pair<String, String>? {

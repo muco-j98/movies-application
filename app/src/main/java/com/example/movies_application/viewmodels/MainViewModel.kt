@@ -13,7 +13,9 @@ class MainViewModel @Inject constructor(
     private val mainRepository: MainRepository
 ) : ViewModel() {
     val moviesResponse: MutableLiveData<Resource<List<MoviesItem>>> = MutableLiveData()
-    val watchListMovies: LiveData<List<MoviesItem>> = mainRepository.getAllWatchlistMovies()
+
+    fun getWatchListMovies(userId: String): LiveData<List<MoviesItem>> =
+        mainRepository.getAllWatchlistMovies(userId)
 
     fun insertMovie(movie: MoviesItem) = viewModelScope.launch {
         mainRepository.insertMovie(movie)
@@ -22,8 +24,8 @@ class MainViewModel @Inject constructor(
         mainRepository.deleteMovie(movie)
     }
 
-    suspend fun checkIfMovieExists(movieId: String): Boolean =
-        mainRepository.checkIfMovieExists(movieId)
+    suspend fun checkIfMovieExists(movieId: String, userId: String): Boolean =
+        mainRepository.checkIfMovieExists(movieId, userId)
 
     fun getMovies() = viewModelScope.launch {
         moviesResponse.postValue(Resource.Loading())
